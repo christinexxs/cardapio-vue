@@ -25,7 +25,7 @@
 
     <div class="container">
 
-        <div class="app"> <!-- começo da app -->
+        <div id="app"> <!-- começo da app -->
                 <div class="row">
 
                     <!-- Imagens do burger -->
@@ -37,21 +37,28 @@
                                 <!-- propriedade computada -->
                                 <img src="" alt="">
                             
-                                <img :src="">
-                                <img :src="">
-                                <img :src="">
-                                <img :src="">
-                                <img :src="">
-                                <img :src="">
-                                <img :src="">
+                                <img :src=" pao[0]">
+                                <img :src="alface">
+                                <img :src="ketchup">
+                                <img :src="mostarda">
+                                <img :src="maionese">
+                                <img :src="burger">
+                                <img :src="pao[1]">
                                 
                              </div><!-- col -->
-
                         </div>
                     </div>
                     
                     <!-- Seleção de produtos -->
-                    <div class="col-md-6">
+                    <div class="col-md-6" v-if="etapa == 1">
+                        
+                        <!-- tipo de pão -->
+                         <div class="row mt-2">
+                            <div class="col">
+                                Tipo de Pão
+                            </div>
+                         </div>
+
 
                     </div>
 
@@ -63,8 +70,15 @@
     </div>
     <!-- Instancia VUE -->
     <script>
+        // => comentarios no script
+        // const = constante - vm = view (html) Model (js)
+        const vm = new Vue ({
+            el: '#app' ,
 
+
+        })
     </script>
+
 </body>
 
 </html>
