@@ -139,7 +139,7 @@
 
                                         <label class="form-check-label"> Maionese </label>
 
-                                    </div>
+                                    </div> <!-- fim dos molhos -->
 
                                 </div><!-- fim card body -->
                              
@@ -148,13 +148,57 @@
                     </div>
                     <!-- Fim Molhos -->
 
-                    
+                      <!-- Tipo de burger -->
+                      <div class="row mt-2">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header">
+                                    Tipo do Hamburguer
+                                </div>
+                                <div class="card-body">
+                                    <!-- Bovino -->
+                                     <div class=" form-check form-check-inline">
+
+                                        <input type="radio" value="bovino" v-model="inputBurger">
 
 
+                                        <label class="form-check-label"> Bovino </label>
+
+
+                                     </div>
+
+                                     <!-- Frango -->
+                                        <div class=" form-check form-check-inline">
+
+                                            <input type="radio" value="frango" v-model="inputBurger">
+
+                                            <label class="form-check-label"> Frango </label>
+
+                                        </div>
+
+                                        <!-- Vegetal -->
+                                        <div class=" form-check form-check-inline">
+                                            <input type="radio" value="vegetal" v-model="inputBurger">
+
+
+                                            <label class="form-check-label"> Vegetal </label>
+                                        </div>
+
+                                </div>
+
+                 </div>
+             </div>
+            </div> <!-- fim Burger-->
+
+                <!-- fazer o pedido -->
+                <div class="row mt-2">
+                    <div class="col d-flex justify-content-end">
+
+                        <button class="btn btn-primary"> Fazer o Pedido </button>
+                    </div>
+                </div>
                                                       
-                    
-                    
-
+                
                 </div> <!-- Fim Etapa 1 -->
                 <!-- Fim col md -->
 
@@ -166,80 +210,94 @@
 
     <!-- instancia VUE -->
     <script>
-        const vm = new Vue({
-            el: '#app',
+        const vm = new Vue({ el: '#app',
 
-            data: {  // atributos // propriedades
-                inputTipoPao: '',  /* radio = Obrigatorio */ 
-                inputSalada: [], /* checkbox = opcional */
-                inputMolhos: [],
-                
-                etapa: 1,
-                
+        data: {  // atributos // propriedades
+            inputTipoPao: '',  /* radio = Obrigatorio */ 
+            inputSalada: [], /* checkbox = opcional */
+            inputMolhos: [],
+            inputBurger: '',
+            etapa: 1,
+            
 
+        },
+
+        computed: { // propriedades computadas // reativos
+            pao() {
+                switch (this.inputTipoPao) {
+                    
+                    default:
+                        return ['imagens/padrao/pao_superior.png', 'imagens/padrao/pao_inferior.png']
+                        
+                    case 'gergelim':
+                        return ['imagens/pao_gergelim_superior.png', 'imagens/pao_gergelim_inferior.png']
+
+                    case 'australiano':
+                        return ['imagens/pao_australiano_superior.png', 'imagens/pao_australiano_inferior.png']
+                    
+                }
             },
 
-            computed: { // propriedades computadas // reativos
-                pao() {
-                    switch (this.inputTipoPao) {
-                        
-                        default:
-                            return ['imagens/padrao/pao_superior.png', 'imagens/padrao/pao_inferior.png']
-                            
-                        case 'gergelim':
-                            return ['imagens/pao_gergelim_superior.png', 'imagens/pao_gergelim_inferior.png']
-
-                        case 'australiano':
-                            return ['imagens/pao_australiano_superior.png', 'imagens/pao_australiano_inferior.png']
-                        
-                    }
-                },
-
-                alface () {
-                    if (this.inputSalada.includes('alface')) {
-                        return 'imagens/alface.png'
-                    }
-
-                    return 'imagens/padrao/alface.png'
-                },
-
-                ketchup () {
-                    
-                    if (this.inputMolhos.includes('ketchup')) {
-                        return 'imagens/ketchup.png'
-                    }
-
-                    return 'imagens/padrao/molho.png'
-                    
-                },
-
-                mostarda () {
-                    
-                    if (this.inputMolhos.includes('mostarda')) {
-                        return 'imagens/mostarda.png'
-                    }
-
-                    return 'imagens/padrao/molho.png'
-                
-                },
-
-                maionese () {
-                    if (this.inputMolhos.includes('maionese')) {
-                        return 'imagens/maionese.png'
-                    }
-
-                    return 'imagens/padrao/molho.png'  
+            alface () {
+                if (this.inputSalada.includes('alface')) {
+                    return 'imagens/alface.png'
                 }
 
+                return 'imagens/padrao/alface.png'
+            },
 
+            ketchup () {
+                
+                if (this.inputMolhos.includes('ketchup')) {
+                    return 'imagens/ketchup.png'
+                }
 
-
-
+                return 'imagens/padrao/molho.png'
                 
             },
+
+            mostarda () {
+                
+                if (this.inputMolhos.includes('mostarda')) {
+                    return 'imagens/mostarda.png'
+                }
+
+                return 'imagens/padrao/molho.png'
             
+            },
+
+            maionese () {
+                if (this.inputMolhos.includes('maionese')) {
+                    return 'imagens/maionese.png'
+                }
+
+                return 'imagens/padrao/molho.png'  
+            },
+        
+            burger () {
+                switch (this.inputBurger) {
+                    case 'bovino':
+                        return 'imagens/bovino.png'
+
+                        case 'frango':
+                        return 'imagens/frango.png'
+
+                        case 'vegetal':
+                        return 'imagens/soja.png' 
+
+                        default:
+                            return 'imagens/padrao/hamburguer.png'
+                }
             
-        })
+                },
+            
+
+
+        },
+    })
+
+           
+            
     </script>
 
 </body>
