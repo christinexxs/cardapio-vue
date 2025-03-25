@@ -267,19 +267,60 @@
  
                             <button type="button" class="btn btn-warning" @click="etapa -= 1"> Editar o Lanche</button>
 
-                            <button type="button" class="btn bnt-success" @click="confirmarPedido()"> Confirmar </button>
+                            <button type="button" class="btn btn-success" @click="confirmarPedido()"> Confirmar </button>
 
                         </div>
                     </div>
 
                  </div> <!-- Fim Etapa 2 -->
 
+                  <!-- repetir pedido  -->
+                     <!-- etapa 3 -->
+                 <div class="col-md-6" v-if="etapa == 3">
+                    <div class="row mt-2">
+                        <div class="col">
+                            <div class="card">
 
-                                
+                                <div class="card-header">
+                                   Pedido Confirmado
+                                </div>
 
-            </div> <!-- fim ROW -->
-        </div> <!-- FIM APP -->
-    </div> <!-- FIM container -->
+                                <div class="card-body">
+
+                                    <div class="mb-3">
+                                       Seu pedido foi confirmado,aguarde em sua mesa até levarmos para você
+                                    </div>   
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+
+
+                        <div class="col d-flex justify-content-between">
+    
+                            <button type="button" class="btn btn-warning" @click="etapa -= 1">Repetir Pedido</button>
+    
+    
+                            <button type="button" class="btn btn-success" @click="novoPedido()">Novo Pedido</button>
+    
+    
+                        </div>
+    
+    
+                    </div>
+    
+
+                </div>  <!-- fim etapa 3 -->
+
+
+
+
+                   </div> <!-- fim ROW -->
+                    </div> <!-- FIM APP -->
+            </div> <!-- FIM container -->
 
     <!-- instancia VUE -->
     <script>
@@ -287,6 +328,7 @@
             el: '#app',
 
             data: {  // atributos // propriedades
+                etapa 1,
                 inputTipoPao: '',  /* radio = Obrigatorio */ 
                 inputSalada: [], /* checkbox = opcional */
                 inputMolhos: [],
@@ -297,7 +339,8 @@
 
                 inputNome: '',
                 inputEndereco: '',
-                
+                novoPedidoAssicrono: null,
+             
             },
 
             computed: { // propriedades computadas // reativos
@@ -413,8 +456,29 @@
 
                 }
             },
+            
+            novoPedido(){
+                 
+                this.etapa = 1
+
+                this.inputTipoPao = ''
+                this.inputSalada = []
+                this.inputMolhos = []
+                this.inputBurger = ''
+                this.inputNome = ''
+                this.inputEndereco = ''
+         
+            },
+
 
         },
+        watch: {
+            etapa(novoValor){
+                if (novoValor == 1){
+                    clearTimeout(this.novoPedidoAssicrono)
+                }
+            },
+        }
 
 
 
